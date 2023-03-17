@@ -24,7 +24,6 @@ public class Produto {
 	@NotBlank(message = "A quantidade do produto é obrigatória!")
 	private Long quantidade;
 	
-	@NotBlank(message = "O preço do produto é obrigatório!")
 	private Float  preco;
 	
 	@NotNull
@@ -32,7 +31,6 @@ public class Produto {
 	
 	private String fotoProduto;
 	
-	// Qual anotação colocar?
 	private Float doacaoTotal;
 
 	public Long getId() {
