@@ -11,7 +11,9 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 @Entity
@@ -26,19 +28,19 @@ public class Usuario {
 	@Size(min = 3, max = 255, message="Digite no minimo 3 caracteres e no maximo 255 caracteres")
 	private String nome;
 	
-	@NotBlank(message="usuario é obrigatorio")
+	@NotNull(message="Usuário é obrigatorio")
 	@Size(min = 3, max = 255, message="Digite no minimo 3 caracteres e no maximo 255 caracteres")
+	@Email(message = "O Atributo Usuário deve ser um email válido!")
 	private String usuario;
 	
 	@NotBlank(message="senha é obrigatorio")
-	@Size(min = 3, max = 255, message="Digite no minimo 3 caracteres e no maximo 255 caracteres")
+	@Size(min = 3, message="Digite no minimo 3 caracteres e no maximo 255 caracteres")
 	private String senha;
-	
 	
 	private String foto;
 	
-	@NotBlank
-	@Size(min = 3, max = 100, message="Digite no minimo 3 caracteres e no maximo 100 caracteres")
+	@NotNull
+	@Size(max = 20, message="Máximo de 20 caracteres :o")
 	private String tipoUsuario;
 
 	@OneToMany(mappedBy="usuario", cascade = CascadeType.REMOVE)
@@ -93,10 +95,13 @@ public class Usuario {
 	public void setTipoUsuario(String tipoUsuario) {
 		this.tipoUsuario = tipoUsuario;
 	}
-	
-	
-	
-	
-	
 
+	public List<Produto> getProduto() {
+		return produto;
+	}
+
+	public void setProduto(List<Produto> produto) {
+		this.produto = produto;
+	}
+	
 }
